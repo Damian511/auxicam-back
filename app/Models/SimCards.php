@@ -8,7 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class SimCards extends Model
 {
     protected $table = 'simcards';
-    protected $fillable = ['simcardid','estadoid'];
+    protected $fillable = ['simcardid','numero','estadoid'];
     protected  $primaryKey = 'simcardid';
     public $timestamps = false;
+    
+    public function estado()
+    {
+        return $this->hasOne('App\Models\Estados','estadoid','estadoid');
+    }
 }

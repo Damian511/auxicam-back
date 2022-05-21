@@ -11,4 +11,9 @@ class Mascotas extends Model
     protected $fillable = ['mascotaid','nombre','raza','edad','estadoid'];
     protected  $primaryKey = 'mascotaid';
     public $timestamps = false;
+
+    public function estado()
+    {
+        return $this->hasOne('App\Models\Estados','estadoid','estadoid');
+    }
 }

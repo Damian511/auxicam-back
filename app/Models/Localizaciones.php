@@ -11,4 +11,14 @@ class Localizaciones extends Model
     protected $fillable = ['localizacionid','dispositivoid','latitud','longitud','fechahora','bateria','estadoid'];
     protected  $primaryKey = 'localizacionid';
     public $timestamps = false;
+
+    public function dispositivo()
+    {
+        return $this->hasOne('App\Models\Dispositivos','dispositivoid','dispositivoid');
+    }
+
+    public function estado()
+    {
+        return $this->hasOne('App\Models\Estados','estadoid','estadoid');
+    }
 }

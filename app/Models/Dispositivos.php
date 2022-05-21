@@ -13,15 +13,15 @@ class Dispositivos extends Model
     public $timestamps = false;
     public function mascota()
     {
-        return $this->hasOne('App\Mascotas','mascotaid','mascotaid');
+        return $this->hasOne('App\Models\Mascotas','mascotaid','mascotaid');
     }
     public function sim()
     {
-        return $this->hasOne('App\SimCards','simcardid','simcardid');
+        return $this->hasOne('App\Models\SimCards','simcardid','simcardid');
     }
     public function estado()
     {
-        return $this->hasOne('App\Estadod','estadoid','estadoid');
+        return $this->hasOne('App\Models\Estados','estadoid','estadoid');
     }
 
 }
