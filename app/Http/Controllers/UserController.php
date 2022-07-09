@@ -101,8 +101,10 @@ class UserController extends Controller
 
     public function probarPass(Request $request,User $user)
     {
-        if (Hash::check($request->old_password, $user->password)) {
-            return "son iguales";
+        if (Hash::check($request->old_pass, $user->password)) {
+            $user->password = Hash::make($request->new_pass);
+            $user->pass_default = false;
+            $user->save();
         }else{
             return response()->json(['error' => 'La contraseña antigua no coincide con la contraseña ingresada'],422);
         }

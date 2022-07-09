@@ -46,6 +46,7 @@ class RegisterController extends Controller
             'direccion' => ['required'],
             'fechanacimiento' => ['required'],
         ]);
+        
         User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -54,7 +55,8 @@ class RegisterController extends Controller
             'fechanacimiento' => $request->fechanacimiento,
             'estadoid' => 1,
             'rolid' => 2,
-            'password' => Hash::make($password)
+            'password' => Hash::make($password),
+            'pass_default' => false
         ]);
 
         $details = [

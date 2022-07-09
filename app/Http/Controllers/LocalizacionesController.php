@@ -110,7 +110,7 @@ class LocalizacionesController extends Controller
 
     public function marcadores(Request $request){
         $localizaciones = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->get();
-        $respuesta = array();
+/*         $respuesta = array();
         foreach ($localizaciones as $localizacion){
             $latitud = (double) $localizacion->latitud;
             $longitud = (double) $localizacion->longitud;
@@ -120,7 +120,29 @@ class LocalizacionesController extends Controller
              );
              $object = json_decode(json_encode($respuesta), FALSE);
         }
-        return $object;
+        return $respuesta;
+ */
+        $respuesta = array();
+        foreach($localizaciones as $localizacion){
+            $latitud = (double) $localizacion->latitud;
+            $longitud = (double) $localizacion->longitud;
+            //$posicion[] = $latitud .$longitud;
+            $posicion = array($latitud,$longitud);
+            array_push($respuesta,$posicion);
+        }
+        return $respuesta;
+    }
 
+    public function historico(Request $request){
+        $localizaciones = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->where('fecha','=',$request->fecha)->whereBetween('hora',[$request->horaInicio,$request->horaFin])->get();
+        $respuesta = array();
+        foreach($localizaciones as $localizacion){
+            $latitud = (double) $localizacion->latitud;
+            $longitud = (double) $localizacion->longitud;
+            //$posicion[] = $latitud .$longitud;
+            $posicion = array($latitud,$longitud);
+            array_push($respuesta,$posicion);
+        }
+        return $respuesta;
     }
 }

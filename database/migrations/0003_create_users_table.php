@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreign('rolid')->references('rolid')->on('roles');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('pass_default');
             $table->rememberToken();
             $table->timestamps();
         });

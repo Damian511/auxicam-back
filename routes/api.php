@@ -53,6 +53,16 @@ Route::middleware('auth:sanctum')->post('altaDispositivo','MascotasController@st
 //listar dispositivos por usuario
 Route::middleware('auth:sanctum')->get('dispositivosUsuarios','DispositivosController@index');
 
+//listar ubicaciones
+Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesController@marcadores');
+
+//listar historico
+Route::middleware('auth:sanctum')->put('historico','LocalizacionesController@historico');
+
+
+//cambiar password
+Route::put('cambiarPass/{user}','UserController@probarPass');
+
 
 
 
@@ -63,7 +73,7 @@ Route::middleware('auth:sanctum')->get('verUsuario','UsuariosController@show');
 
 #Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesController@index');
 
-Route::get('localizaciones','LocalizacionesController@index');
+//Route::get('localizaciones','LocalizacionesController@index');
 
 Route::middleware('auth:sanctum')->get('verEstado','LocalizacionesController@verEstado');
 
@@ -75,10 +85,9 @@ Route::post('localizaciones','LocalizacionesController@store');
 
 
 
-Route::middleware('auth:sanctum')->get('marcadores','LocalizacionesController@marcadores');
+//Route::middleware('auth:sanctum')->get('marcadores','LocalizacionesController@marcadores');
 
 //Route::middleware('auth:sanctum')->get('send-mail','MailSend@mailsend');
 
 Route::get('send-mail','MailSend@mailsend');
 
-Route::put('prueba/{user}','UserController@probarPass');
