@@ -18,7 +18,7 @@ class MailSend extends Controller
             'pass' => 'Su contraseña por defecto es : ' .$password,
         ];
 
-        \Mail::to("ang.dam96@gmail.com")->send(new SendMail($details));
+        \Mail::to($request->mail)->send(new SendMail($details));
         return "se realizo correctamente la operación";
     }
 }

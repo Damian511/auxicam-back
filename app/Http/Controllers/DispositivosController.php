@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
-use App\Models\Usuarios;
+use App\Models\User;
 use App\Models\UsuariosDispositivos;
 use App\Models\Mascotas;
 use Illuminate\Http\Request;
@@ -18,14 +18,14 @@ class DispositivosController extends Controller
     public function index(Request $request)
     {
         //seleccionamos todos los dispositivos asociados al usuario
-        $usuario = Usuarios::where('nombreusuario','=',$request->usuario)->first();
+        $usuario = User::where('id','=',$request->usuarioid)->first();
         //obtenemos los dispositivos
-        $usuariosDispositivos = UsuariosDispositivos::where('usuarioid','=',$usuario->usuarioid)->get();
+        $usuariosDispositivos = UsuariosDispositivos::where('usuarioid','=',$usuario->id)->get();
         //inicializamos la respuesta
         $respuesta = array();
         //recorremos el array de usuarios por dispositivos
         foreach($usuariosDispositivos as $value){
-            $dispositivo = Dispositivos::where('dispositivoid','=',$value->dispositivoid)->with('mascota')->first();
+            $dispositivo = Dispositivos::where('dispositivoid','=',$value->dispositivoid)->with('mascota')->with('estado')->first();
             $respuesta[] = $dispositivo;
         }
         return $respuesta;

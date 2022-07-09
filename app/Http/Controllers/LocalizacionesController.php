@@ -16,13 +16,16 @@ class LocalizacionesController extends Controller
      */
     public function index(Request $request)
     {
-        if(empty($request->fechaInicio)){
+        
+        $respuestas=Localizaciones::all();
+        return $respuestas;
+        /* if(empty($request->fechaInicio)){
             $respuesta = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->orderBy('localizacionid','DESC')->get();
             return $respuesta;
         }else{
             $respuesta = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->whereBetween('fechahora', [$request->fechaInicio, $request->fechaFin])->orderBy('localizacionid','DESC')->get();
             return $respuesta;
-        }
+        } */
     }
 
     /**

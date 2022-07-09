@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('dispositivos',function (Blueprint $table){
             $table->id('dispositivoid');
+            $table->string('descripcion');
             $table->unsignedBigInteger('simcardid');
             $table->foreign('simcardid')->references('simcardid')->on('simcards');
             $table->unsignedBigInteger('mascotaid');

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Dispositivos extends Model
 {
     protected $table = 'dispositivos';
-    protected $fillable = ['dispositivoid','simcardid','mascotaid','estadoid'];
+    protected $fillable = ['dispositivoid','descripcion','simcardid','mascotaid','estadoid'];
     protected  $primaryKey = 'dispositivoid';
     public $timestamps = false;
     public function mascota()

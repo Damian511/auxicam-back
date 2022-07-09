@@ -21,7 +21,7 @@ class LoginController extends Controller
         }
 
         throw ValidationException::withMessages([
-            'email' => ['The provided credentials are incorrect']
+            'email' => ['Las credenciales ingresadas no son correctas']
         ]);
     }
 
@@ -29,7 +29,4 @@ class LoginController extends Controller
         Auth::logout();
     }
 
-    public function prueba(){
-        return "Datos obtenidos desde la autentificación de auth";
-    }
 }

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('simcards',function (Blueprint $table){
             $table->id('simcardid');
-            $table->string('numero',10)->unique();
+            $table->string('numero')->unique();
             $table->unsignedBigInteger('estadoid');
             $table->foreign('estadoid')->references('estadoid')->on('estados');
         });

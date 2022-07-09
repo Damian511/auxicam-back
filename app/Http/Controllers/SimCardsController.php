@@ -14,7 +14,8 @@ class SimCardsController extends Controller
      */
     public function index()
     {
-        //
+        $respuesta = SimCards::where('estadoid','>=',0)->with('estado')->get();
+        return $respuesta;
     }
 
     /**
@@ -35,7 +36,13 @@ class SimCardsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //creamos el nuevo registro
+        $sim = new SimCards;
+        //seteamos los datos del back
+        $sim->numero = $request->numero;
+        $sim->estadoid = 1;
+        //guardamos el registro
+        $sim->save();
     }
 
     /**
@@ -69,7 +76,9 @@ class SimCardsController extends Controller
      */
     public function update(Request $request, SimCards $simCards)
     {
-        //
+        //seteamos los datos del request
+        $simCards->numero = $request->numero;
+        $simCards->save();
     }
 
     /**
@@ -83,9 +92,15 @@ class SimCardsController extends Controller
         //
     }
 
+    public function desactivar(SimCards $simCards)
+    {
+        $simCards->estadoid = 0;
+        $simCards->save();
+    }
+
     public function comprobarSIM(Request $request)
     {
-        $respuesta = SimCards::where('numero','=',$request->sim)->first();
+        $respuesta = SimCards::where('numero','=',$request->numero)->first();
         if(is_null($respuesta)){
             return array(
                 "value" => true,

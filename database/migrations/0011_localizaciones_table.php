@@ -19,7 +19,8 @@ return new class extends Migration
             $table->foreign('dispositivoid')->references('dispositivoid')->on('dispositivos');
             $table->string('latitud',20);
             $table->string('longitud',20);
-            $table->dateTime('fechahora');
+            $table->date('fecha');
+            $table->time('hora');
             $table->integer('bateria');
             $table->unsignedBigInteger('estadoid');
             $table->foreign('estadoid')->references('estadoid')->on('estados');

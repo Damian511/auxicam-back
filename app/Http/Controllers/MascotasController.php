@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Mascotas;
 use App\Models\Dispositivos;
-use App\Models\Usuarios;
+use App\Models\User;
 use App\Models\UsuariosDispositivos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -58,18 +58,18 @@ class MascotasController extends Controller
                 //guardamos el dispositivo
                 $dispositivos->save();
                 //obtenemos el userid
-                $usuario = Usuarios::where('nombreusuario','=',$request->usuario)->first();
+                $usuario = User::where('id','=',$request->usuarioid)->first();
                 //creamos el usuarioDispositivo
                 $usuarioDispositivos = new UsuariosDispositivos;
                 $usuarioDispositivos->dispositivoid = $dispositivos->dispositivoid;
-                $usuarioDispositivos->usuarioid = $usuario->usuarioid;
+                $usuarioDispositivos->usuarioid = $usuario->id;
                 $usuarioDispositivos->save();
             }
             DB::commit();
             return "Se inserto el registro correctamente";
         } catch (\Exception $e) {
             DB::rollback();
-            return "No se pudo realizar la operacion";
+            return "No se pudo realizar la operacion" .$e;
         }
     }
 
