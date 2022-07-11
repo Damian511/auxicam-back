@@ -91,3 +91,6 @@ Route::post('localizaciones','LocalizacionesController@store');
 
 Route::get('send-mail','MailSend@mailsend');
 
+
+//prueba para descarga de reporte
+Route::get('descargar','GenerarReportes@imprimir');

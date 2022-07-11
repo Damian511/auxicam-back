@@ -33,7 +33,8 @@ class RegisterController extends Controller
             'fechanacimiento' => $request->fechanacimiento,
             'estadoid' => 1,
             'rolid' => 1,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'pass_default' => false
         ]);
     }
 

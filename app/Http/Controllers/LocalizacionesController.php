@@ -46,15 +46,20 @@ class LocalizacionesController extends Controller
      */
     public function store(Request $request)
     {
-        //creamos el registro de la nueva localización
-        $localizaciones = new Localizaciones;
-        $localizaciones->dispositivoid = 1;
-        $localizaciones->latitud = $request->Latitud;
-        $localizaciones->longitud = $request->Longitud;
-        $localizaciones->fechahora = $request->FechaHora;
-        $localizaciones->bateria = $request->Bateria;
-        $localizaciones->estadoid = 1;
-        $localizaciones->save();
+        if($localizaciones->latitud != null && $localizaciones->latitud != "0.000000" ){
+            //creamos el registro de la nueva localización
+            $localizaciones = new Localizaciones;
+            $localizaciones->dispositivoid = $request->dispositivoid;
+            $localizaciones->latitud = $request->latitud;
+            $localizaciones->longitud = $request->longitud;
+            $localizaciones->fecha = $request->fecha;
+            $localizaciones->hora = $request->hora;
+            $localizaciones->bateria = $request->Bateria;
+            $localizaciones->estadoid = 1;
+            $localizaciones->save();
+            return "Se inserto el registro correctamente";
+        }
+        
     }
 
     /**
