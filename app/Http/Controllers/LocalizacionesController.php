@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewLocation;
 use App\Models\Localizaciones;
 use App\Models\Usuarios;
 use App\Models\UsuariosDispositivos;
@@ -46,9 +47,9 @@ class LocalizacionesController extends Controller
      */
     public function store(Request $request)
     {
-        if($localizaciones->latitud != null && $localizaciones->latitud != "0.000000" ){
+        if($request->latitud != null && $request->latitud != "0.000000" ){
             //creamos el registro de la nueva localización
-            $localizaciones = new Localizaciones;
+/*             $localizaciones = new Localizaciones;
             $localizaciones->dispositivoid = $request->dispositivoid;
             $localizaciones->latitud = $request->latitud;
             $localizaciones->longitud = $request->longitud;
@@ -56,7 +57,15 @@ class LocalizacionesController extends Controller
             $localizaciones->hora = $request->hora;
             $localizaciones->bateria = $request->Bateria;
             $localizaciones->estadoid = 1;
-            $localizaciones->save();
+            $localizaciones->save(); */
+            //generamos el evento
+            $respuesta = array();
+            $latitud = (double) $request->latitud;
+            $longitud = (double) $request->longitud;
+            $posicion = array($latitud,$longitud);
+            array_push($respuesta,$posicion);
+            event(new NewLocation($respuesta));
+            // retornamos un mensaje
             return "Se inserto el registro correctamente";
         }
         

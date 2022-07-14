@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Events\NewLocation;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,12 +19,20 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+//ruta para 
+Route::get('/location', function (Request $request) {
+    broadcast(new NewLocation());
+});
 
+
+//rutas para login y register
 Route::post('/register', 'RegisterController@register');
 
 Route::post('/registerUser', 'RegisterController@registerUser');
 
 Route::post('/login' , 'LoginController@login');
+
+Route::post('/loginUser' , 'LoginController@loginUser');
 
 Route::post('/logout' , 'LoginController@logout');
 
@@ -56,41 +65,38 @@ Route::middleware('auth:sanctum')->get('dispositivosUsuarios','DispositivosContr
 //listar ubicaciones
 Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesController@marcadores');
 
+//ruta para insertar las localizaciones
+Route::post('localizaciones','LocalizacionesController@store');
+
 //listar historico
 Route::middleware('auth:sanctum')->put('historico','LocalizacionesController@historico');
-
 
 //cambiar password
 Route::put('cambiarPass/{user}','UserController@probarPass');
 
-
-
-
-
+//ruta para actualizar el password
 Route::middleware('auth:sanctum')->put('actualizarPass/{usuarios}','UsuariosController@actualizarPass');
 
-Route::middleware('auth:sanctum')->get('verUsuario','UsuariosController@show');
+//ruta para descargar los reportes
+Route::get('descargar','GenerarReportes@usuariosActivos');
 
-#Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesController@index');
 
-//Route::get('localizaciones','LocalizacionesController@index');
+
+/* Route::middleware('auth:sanctum')->get('verUsuario','UsuariosController@show');
+
+Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesController@index');
+
+Route::get('localizaciones','LocalizacionesController@index');
 
 Route::middleware('auth:sanctum')->get('verEstado','LocalizacionesController@verEstado');
 
+Route::middleware('auth:sanctum')->post('localizaciones','SimCardsController@store');
+
+Route::middleware('auth:sanctum')->get('marcadores','LocalizacionesController@marcadores');
+
+Route::middleware('auth:sanctum')->get('send-mail','MailSend@mailsend');
+
+Route::get('send-mail','MailSend@mailsend'); */
 
 
-//Route::middleware('auth:sanctum')->post('localizaciones','SimCardsController@store');
 
-Route::post('localizaciones','LocalizacionesController@store');
-
-
-
-//Route::middleware('auth:sanctum')->get('marcadores','LocalizacionesController@marcadores');
-
-//Route::middleware('auth:sanctum')->get('send-mail','MailSend@mailsend');
-
-Route::get('send-mail','MailSend@mailsend');
-
-
-//prueba para descarga de reporte
-Route::get('descargar','GenerarReportes@imprimir');

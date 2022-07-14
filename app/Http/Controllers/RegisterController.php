@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'estadoid' => 1,
             'rolid' => 2,
             'password' => Hash::make($password),
-            'pass_default' => false
+            'pass_default' => true
         ]);
 
         $details = [
