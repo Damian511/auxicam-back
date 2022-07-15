@@ -72,13 +72,18 @@ Route::post('localizaciones','LocalizacionesController@store');
 Route::middleware('auth:sanctum')->put('historico','LocalizacionesController@historico');
 
 //cambiar password
-Route::put('cambiarPass/{user}','UserController@probarPass');
+Route::middleware('auth:sanctum')->put('cambiarPass/{user}','UserController@probarPass');
 
 //ruta para actualizar el password
 Route::middleware('auth:sanctum')->put('actualizarPass/{usuarios}','UsuariosController@actualizarPass');
 
 //ruta para descargar los reportes
-Route::get('descargar','GenerarReportes@usuariosActivos');
+Route::get('reporteUsuarios','GenerarReportes@usuariosActivos');
+
+Route::get('reporteSIM','GenerarReportes@simsActivas');
+
+//ruta para ver estado del dispositivo
+Route::middleware('auth:sanctum')->get('verEstado','LocalizacionesController@verEstado');
 
 
 

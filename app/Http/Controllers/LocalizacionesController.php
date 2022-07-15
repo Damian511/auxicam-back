@@ -118,7 +118,7 @@ class LocalizacionesController extends Controller
 
     public function verEstado(Request $request)
     {
-        $respuesta = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->orderBy('fechahora', 'desc')->first();
+        $respuesta = Localizaciones::where('dispositivoid','=',$request->dispositivoid)->orderBy('localizacionid', 'desc')->first();
         return $respuesta;
     }
 

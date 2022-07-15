@@ -2,8 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Reporte-Usuarios-Activos</title>
-    <link rel="stylesheet" href="{{ URL('css/reportes.css') }}">
+    <title>Usuarios-Activos</title>
+    <link rel="stylesheet" href="{{ URL('css/reportes.css') }}" media="all">
   </head>
   <body>
     <header class="clearfix">
@@ -19,7 +19,7 @@
       <div id="project">
         <div><span>Proyecto</span> Sistema Auxicam</div>
         <div><span>Direccion</span> San Francisco de Asís N° 464</div>
-        <div><span>Fecha</span> 09/07/2022</div>
+        <div><span>Fecha</span> {{$date}}</div>
       </div>
     </header>
     <main>
