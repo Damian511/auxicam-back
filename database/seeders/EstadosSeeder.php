@@ -25,5 +25,10 @@ class EstadosSeeder extends Seeder
             'descripcion' => 'ACTIVO',
             'activo' => true,
         ]);
+        DB::table('estados')->insert([
+            'estadoid' => 2,
+            'descripcion' => 'VINCULADO',
+            'activo' => true,
+        ]);
     }
 }

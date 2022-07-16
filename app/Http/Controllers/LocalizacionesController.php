@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\NewLocation;
+use App\Events\GpsStatus;
 use App\Models\Localizaciones;
 use App\Models\Usuarios;
 use App\Models\UsuariosDispositivos;
@@ -48,6 +49,7 @@ class LocalizacionesController extends Controller
     public function store(Request $request)
     {
         if($request->latitud != null && $request->latitud != "0.000000" ){
+            event(new GpsStatus('GPS está activo'));
             //creamos el registro de la nueva localización
 /*             $localizaciones = new Localizaciones;
             $localizaciones->dispositivoid = $request->dispositivoid;
@@ -67,6 +69,8 @@ class LocalizacionesController extends Controller
             event(new NewLocation($respuesta));
             // retornamos un mensaje
             return "Se inserto el registro correctamente";
+        }else{
+            event(new GpsStatus('GPS no esta listo'));
         }
         
     }

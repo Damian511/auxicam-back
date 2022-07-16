@@ -100,11 +100,11 @@ class SimCardsController extends Controller
 
     public function comprobarSIM(Request $request)
     {
-        $respuesta = SimCards::where('numero','=',$request->numero)->first();
+        $respuesta = SimCards::where('numero','=',$request->numero)->where('estadoid','=',1)->first();
         if(is_null($respuesta)){
             return array(
                 "value" => true,
-                "mensaje" => "El número ingresado no se encuentra en la base de datos"
+                "mensaje" => "El número ingresado no se encuentra en la base de datos o no se puede vincular"
             );
         }else{
             return array(

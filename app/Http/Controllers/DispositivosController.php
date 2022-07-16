@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Dispositivos;
 use App\Models\User;
+use App\Models\SimCards;
 use App\Models\UsuariosDispositivos;
 use App\Models\Mascotas;
 use Illuminate\Http\Request;
@@ -92,8 +93,24 @@ class DispositivosController extends Controller
      * @param  \App\Models\Dispositivos  $dispositivos
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Dispositivos $dispositivos)
+    public function destroy(Request $request,Dispositivos $dispositivos)
     {
-        //
+        //obtenemos la simcard
+        $simcard = SimCards::find($dispositivos->simcardid);
+        //obtenemos la mascota
+        $mascota = Mascotas::find($dispositivos->mascotaid);
+        //obtenemos el el registro usuario-dispositivo
+        $usuarioDispositivo = UsuariosDispositivos::where('usuarioid','=',$request->usuarioid)->where('dispositivoid','=',$dispositivos->dispositivoid)->first();
+        //eliminamos el registro usuario por dispositivo
+        $usuarioDispositivo->delete();
+        //eliminamos el dispositivo
+        $dispositivos->delete();
+        //eliminamos la mascota
+        $mascota->delete();
+        //cambiamos el estado de la sim
+        $simcard->estadoid = 1;
+        $simcard->save();
+
+        return "se realizaco correctamente";
     }
 }

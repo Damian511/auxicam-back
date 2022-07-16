@@ -10,7 +10,7 @@
       <div id="logo">
         <img src="{{ URL('image/logo.png') }}" style="width: 25%;height: 25%;">
       </div>
-      <h1>Reporte de SimCards Activas</h1>
+      <h1>Reporte de SimCards</h1>
       <div id="company" class="clearfix">
         <div>AUXICAM</div>
         <div>Guarambare<br /></div>
@@ -45,7 +45,7 @@
      </div>
       <div id="notices">
         <div>DETALLE:</div>
-        <div class="notice">Reporte de SimCards Activos.</div>
+        <div class="notice">Reporte de SimCards.</div>
       </div>
     </main>
     <footer>

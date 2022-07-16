@@ -10,19 +10,19 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class NewLocation implements ShouldBroadcast
+class GpsStatus implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $location;
+    public $status;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($location)
+    public function __construct($status)
     {
-        $this->location = $location;
+        $this->status = $status;
     }
 
     /**
@@ -32,6 +32,6 @@ class NewLocation implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel-location');
+        return new Channel('channel-gps');
     }
 }

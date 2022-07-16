@@ -19,11 +19,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//ruta para 
-Route::get('/location', function (Request $request) {
+//ruta para websocket de localizaciones
+/* Route::get('/location', function (Request $request) {
     broadcast(new NewLocation());
-});
+}); */
 
+//ruta para websocket de gps status
+/* Route::get('/gpsStatus', function (Request $request) {
+    broadcast(new GpsStatus());
+});
+ */
 
 //rutas para login y register
 Route::post('/register', 'RegisterController@register');
@@ -54,7 +59,8 @@ Route::middleware('auth:sanctum')->put('/simcard/{simCards}', 'SimCardsControlle
 
 Route::middleware('auth:sanctum')->put('/simcard/desactivar/{simCards}', 'SimCardsController@desactivar');
 
-Route::middleware('auth:sanctum')->put('comprobarSIM','SimCardsController@comprobarSIM');
+//Route::middleware('auth:sanctum')->put('comprobarSIM','SimCardsController@comprobarSIM');
+Route::put('comprobarSIM','SimCardsController@comprobarSIM');
 
 //vincular dispositivo al usuario
 Route::middleware('auth:sanctum')->post('altaDispositivo','MascotasController@store');
@@ -78,12 +84,15 @@ Route::middleware('auth:sanctum')->put('cambiarPass/{user}','UserController@prob
 Route::middleware('auth:sanctum')->put('actualizarPass/{usuarios}','UsuariosController@actualizarPass');
 
 //ruta para descargar los reportes
-Route::get('reporteUsuarios','GenerarReportes@usuariosActivos');
+Route::middleware('auth:sanctum')->get('reporteUsuarios','GenerarReportes@usuariosActivos');
 
-Route::get('reporteSIM','GenerarReportes@simsActivas');
+Route::middleware('auth:sanctum')->get('reporteSIM','GenerarReportes@simsActivas');
 
 //ruta para ver estado del dispositivo
 Route::middleware('auth:sanctum')->get('verEstado','LocalizacionesController@verEstado');
+
+//ruta para eliminar vinculaciones
+Route::middleware('auth:sanctum')->delete('desvincularDispositivo/{dispositivos}','DispositivosController@destroy');
 
 
 

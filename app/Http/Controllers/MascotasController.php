@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mascotas;
 use App\Models\Dispositivos;
 use App\Models\User;
+use App\Models\SimCards;
 use App\Models\UsuariosDispositivos;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -57,6 +58,11 @@ class MascotasController extends Controller
                 $dispositivos->descripcion = $request->descripcion;
                 //guardamos el dispositivo
                 $dispositivos->save();
+                //obtenemos la simcard
+                $simcard = SimCards::find($dispositivos->simcardid);
+                $simcard->estadoid = 2;
+                //actualizamos el estado de simcard
+                $simcard->save();
                 //obtenemos el userid
                 $usuario = User::where('id','=',$request->usuarioid)->first();
                 //creamos el usuarioDispositivo

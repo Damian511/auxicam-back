@@ -35,7 +35,7 @@ class GenerarReportes extends Controller
     public function simsActivas(){
         //generamos la consulta
         $simcards = DB::table('simcards')
-        ->where('simcards.estadoid','=',1)
+        ->where('simcards.estadoid','>=',1)
         ->join('estados','simcards.estadoid','=','estados.estadoid')
         ->select('simcards.simcardid','simcards.numero','estados.descripcion as estado')
         ->get();
