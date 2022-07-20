@@ -57,9 +57,9 @@ class LocalizacionesController extends Controller
             $localizaciones->longitud = $request->longitud;
             $localizaciones->fecha = $request->fecha;
             $localizaciones->hora = $request->hora;
-            $localizaciones->bateria = $request->Bateria;
+            $localizaciones->bateria = $request->bateria;
             $localizaciones->estadoid = 1;
-            $localizaciones->save(); */
+            $localizaciones->save();  */
             //generamos el evento
             $respuesta = array();
             $latitud = (double) $request->latitud;

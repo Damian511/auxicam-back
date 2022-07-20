@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\DispositivoStatus;
 use App\Models\Dispositivos;
 use App\Models\User;
 use App\Models\SimCards;
@@ -110,7 +111,11 @@ class DispositivosController extends Controller
         //cambiamos el estado de la sim
         $simcard->estadoid = 1;
         $simcard->save();
-
         return "se realizaco correctamente";
+    }
+
+    public function estatus(Request $request)
+    {
+        event(new DispositivoStatus($request->message));  
     }
 }

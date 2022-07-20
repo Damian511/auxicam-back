@@ -74,6 +74,9 @@ Route::middleware('auth:sanctum')->get('localizaciones','LocalizacionesControlle
 //ruta para insertar las localizaciones
 Route::post('localizaciones','LocalizacionesController@store');
 
+//ruta para visualizar el estatus
+Route::put('dispositivoEstatus','DispositivosController@estatus');
+
 //listar historico
 Route::middleware('auth:sanctum')->put('historico','LocalizacionesController@historico');
 
