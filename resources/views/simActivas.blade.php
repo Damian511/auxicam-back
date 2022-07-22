@@ -8,7 +8,7 @@
   <body>
     <header class="clearfix">
       <div id="logo">
-        <img src="{{ URL('image/logo.png') }}" style="width: 25%;height: 25%;">
+        <img src="{{ URL('image/logoauxicam.png') }}" style="width: 45%;height: 25%;">
       </div>
       <h1>Reporte de SimCards</h1>
       <div id="company" class="clearfix">

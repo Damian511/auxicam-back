@@ -51,7 +51,7 @@ class LocalizacionesController extends Controller
         if($request->latitud != null && $request->latitud != "0.000000" ){
             event(new GpsStatus('GPS está activo'));
             //creamos el registro de la nueva localización
-/*             $localizaciones = new Localizaciones;
+            $localizaciones = new Localizaciones;
             $localizaciones->dispositivoid = $request->dispositivoid;
             $localizaciones->latitud = $request->latitud;
             $localizaciones->longitud = $request->longitud;
@@ -59,7 +59,7 @@ class LocalizacionesController extends Controller
             $localizaciones->hora = $request->hora;
             $localizaciones->bateria = $request->bateria;
             $localizaciones->estadoid = 1;
-            $localizaciones->save();  */
+            $localizaciones->save();
             //generamos el evento
             $respuesta = array();
             $latitud = (double) $request->latitud;
