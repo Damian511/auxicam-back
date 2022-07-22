@@ -62,7 +62,8 @@ class RegisterController extends Controller
 
         $details = [
             'title' => 'Confirmación de correo electrónico',
-            'body' => 'Presione en el siguiente enlace para activar su cuenta y modificar su contraseña',
+            'body' => 'Presione en el siguiente enlace para activar su cuenta y modificar su contraseña ',
+            'enlance' => 'http://auxicam.webhop.me/auxicam',
             'pass' => 'Su contraseña por defecto es : ' .$password,
         ];
 
